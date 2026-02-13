@@ -1,3 +1,48 @@
-External Sorting K-way merge / Multiway Merge (Divide and Conquer Algorithm)
+External Sorting 
+-Used to sort large files (sorted in external storage devices such as tapes, disks or drums)
+-It is device dependent
+-Batches of records (that can be accomodated in the internal memory of a computer) are read and sorted at a time using internal sorting methods.
+These sorted barches of records are called runs.
+
+Principle of external sorting methods - 
+1) Internally sort batches of records from the source file to genrate runs.
+Write out the runs as and when they re generated, onto the external storage.
+2) Merge the runs generated in the earlier phase, to obtain larger but fewer runs, and write them out into the external storage devices.
+3) Repeat the run generation and merge until its the final phase onlu one run gets generated , in which the sorting of the file is done.
+
+
+
+Balanced Merge / K-way merge / Multiway Merge (Divide and Conquer Algorithm)
 Input: Given k-sorted arrays. Each array has n elements. n may be same or different.
 Output: Merge all sorted arrays and print sorted output.
+
+k arrays - 3 pointers at each 1st position
+Compare all 3 elements at 0th index from each array
+And psuh the smallest of this in the new array
+
+For performing k-way merge, 2k tapes are needed
+for 2 way merge 4 tapes are needed.
+eg. Suppose we have to sort a file with 13 records which are avaialble on tape using balanced 2-way merge sort. 
+Assume that the internal store can hold only 3 recordds.
+Let T1,T2,T3,T4 be the 4 working tapes
+Tape T0 [81,94,11,96,12,35,17,99,28,58,75,15]
+
+Step1: Rewind all the tapes and mount tapes T0,T1,T2 onto the tape drive
+Step2: Phase1
+Read blocks of 3 records from T0 and internally sort them to generate runs. Distribute the runs alternatively onto the tapes T1 and T2.
+T1 [[11,81,94], [17,28,99], 15]
+T2 [[12,35,96], [41,55,75]]
+Step3: Dismount tape T0 and rewind tapes T1 and T2. Mount tapes T1, T2, T3, T4 onto the drives. 
+Here T1, T2 are the input tapes and T3 amd T4 are the output tapes.
+Step4:Phase 2
+Merge runs on T1 and T2 using 2 way merge to obtain larger runs and distribute on the output tapes T3,T4 respectively
+T3 [[11,12,35,81,94,96][15]]
+T4 [17,28,41,55,75,99]
+Step5: Rewind all tapes . Mount T3,T4 - input tapes and T1,T2 as output tapes.
+Step6: Phase 3: Merge runs on T3,T4 and distribute it on T1 and T2
+T1 [11,12,17,28,35,41,55,75,81,94,96,99]
+T2[15]
+Step7: Rewind all tapes Mount T1, T2 - input and T3 - output
+Step8: Phase 4 
+Merge ruins on T1, T2 and obtain the final run on T3
+T3 [ 11,12,15,17,28,35,41,55,75,81,,94,96,99]
