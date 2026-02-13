@@ -1,0 +1,3 @@
+External Sorting K-way merge / Multiway Merge (Divide and Conquer Algorithm)
+Input: Given k-sorted arrays. Each array has n elements. n may be same or different.
+Output: Merge all sorted arrays and print sorted output.
