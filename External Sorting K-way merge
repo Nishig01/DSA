@@ -18,12 +18,25 @@ Output: Merge all sorted arrays and print sorted output.
 
 k arrays - 3 pointers at each 1st position
 Compare all 3 elements at 0th index from each array
-And psuh the smallest of this in the new array
+And push the smallest of this in the new array
 
 For performing k-way merge, 2k tapes are needed
 for 2 way merge 4 tapes are needed.
+Let's look at the 2-way merge (4 tapes) example:
+Suppose K=2. We need 2K = 4 tapes (T_1, T_2, T_3, T_4).
+Pass 1:
+Input: T_1 and T_2 (Team A).
+Output: T_3 and T_4 (Team B).You merge the first runs of T_1 and T_2 into T_3. 
+Then you merge the next runs into T_4. 
+You keep alternating so the output is balanced between the two output tapes.
+Pass 2: 
+Input: T_3 and T_4 (Team B).
+Output: T_1 and T_2 (Team A).
+Now you merge the longer runs from Team B back into Team A.
+
 eg. Suppose we have to sort a file with 13 records which are avaialble on tape using balanced 2-way merge sort. 
-Assume that the internal store can hold only 3 recordds.
+Assume that the internal store can hold only 3 records.
+
 Let T1,T2,T3,T4 be the 4 working tapes
 Tape T0 [81,94,11,96,12,35,17,99,28,58,75,15]
 
@@ -48,5 +61,8 @@ Merge ruins on T1, T2 and obtain the final run on T3
 T3 [ 11,12,15,17,28,35,41,55,75,81,,94,96,99]
 
 no of k increased; no of passes decreases
+The Formula: The number of passes required is approximately log_k (N/M) (where N is total records and M is memory size).
+The Trade-off: Higher K: Fewer passes over the data (saves massive amounts of time because moving tapes/disks is slow)
+The Cost: Higher K requires more RAM (for more buffers) and more complex comparisons (usually requiring a Loser Tree or Min-Heap to find the smallest element among K options efficiently).
 
-When to stop the merging--Buffer
+When to stop the merging--?
