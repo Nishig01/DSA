@@ -46,3 +46,7 @@ Step7: Rewind all tapes Mount T1, T2 - input and T3 - output
 Step8: Phase 4 
 Merge ruins on T1, T2 and obtain the final run on T3
 T3 [ 11,12,15,17,28,35,41,55,75,81,,94,96,99]
+
+no of k increased; no of passes decreases
+
+When to stop the merging--Buffer
